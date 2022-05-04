@@ -3,9 +3,9 @@ import WalletConnect from '@walletconnect/client'
 import QRCodeModal from '@walletconnect/qrcode-modal'
 import { useContext } from 'react'
 import { Account } from './context'
+import WalletConnectProvider from '@walletconnect/web3-provider'
 
 export default function WalletConnectCom() {
-  const { setChainId } = useContext(Account)
   const { setAccount } = useContext(Account)
   const connector = new WalletConnect({
     bridge: 'https://bridge.walletconnect.org',
@@ -18,9 +18,9 @@ export default function WalletConnectCom() {
       throw error
     }
     const { accounts, chainId } = payload.params[0]
-    setAccount(accounts)
-    setChainId(chainId)
+    setAccount(accounts[0])
     QRCodeModal.close()
+    console.log(payload)
   })
 
   connector.on('session_update', (error, payload) => {
@@ -28,8 +28,7 @@ export default function WalletConnectCom() {
       throw error
     }
     const { accounts, chainId } = payload.params[0]
-    setAccount(accounts)
-    setChainId(chainId)
+    setAccount(accounts[0])
     QRCodeModal.close()
   })
 
@@ -38,7 +37,6 @@ export default function WalletConnectCom() {
       throw error
     }
     setAccount(null)
-    setChainId(null)
   })
   const handleOnClick = () => {
     QRCodeModal.open(connector.uri)

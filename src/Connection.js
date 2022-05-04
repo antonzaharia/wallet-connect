@@ -1,16 +1,30 @@
-import React from 'react'
-import { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useContext } from 'react'
 import { Account } from './context'
 import Web3 from 'web3'
+import WalletConnectProvider from '@walletconnect/web3-provider'
 
 export default function Connection() {
-  const { account, setAccount } = useContext(Account)
+  const { account } = useContext(Account)
   const { chain } = useContext(Account)
 
-  const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545')
+  const web3 = new Web3(Web3.givenProvider)
+
   const wei = web3.utils.toWei('0.001', 'ether')
 
-  const buy = () => {
+  const buy = async () => {
+    if (!web3.currentProvider) {
+      const walletConnectProvider = async () => {
+        const provider = new WalletConnectProvider({
+          infuraId: '26766d6b478542fe904cf4bb3da45744',
+        })
+        await provider.enable()
+        return provider
+      }
+
+      let provider = await walletConnectProvider()
+      web3.setProvider(provider)
+    }
     web3.eth.sendTransaction(
       {
         from: account,
@@ -19,6 +33,7 @@ export default function Connection() {
       },
       (error, result) => {
         console.log(result)
+        console.log(error)
       }
     )
   }

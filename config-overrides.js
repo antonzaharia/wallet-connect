@@ -6,7 +6,7 @@ module.exports = function override(config, env) {
     buffer: require.resolve('buffer'),
     'https-browserify': require.resolve('https-browserify'),
     crypto: false,
-    https: false,
+    https: require.resolve('https-browserify'),
     http: false,
   }
   config.plugins.push(

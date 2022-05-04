@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { Account } from './context'
 
 export default function Metamask() {
-  const { account, setAccount } = useContext(Account)
+  const { setAccount } = useContext(Account)
   const requestAccounts = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
     setAccount(accounts[0])
