@@ -1,4 +1,4 @@
-import { render } from 'react-dom'
+import React from 'react'
 import './App.css'
 import WalletConnectCom from './WalletConnectCom'
 import Metamask from './Metamask'
@@ -19,9 +19,9 @@ function App() {
   return (
     <AccountProvider>
       <div className="App">
+        <Connection />
         <WalletConnectCom />
         {renderMetamaskConnect()}
-        <Connection />
       </div>
     </AccountProvider>
   )

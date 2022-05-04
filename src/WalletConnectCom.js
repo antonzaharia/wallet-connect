@@ -1,12 +1,12 @@
 import React from 'react'
 import WalletConnect from '@walletconnect/client'
 import QRCodeModal from '@walletconnect/qrcode-modal'
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { Account } from './context'
 
 export default function WalletConnectCom() {
-  const [chain, setChainId] = useState(null)
-  const { account, setAccount } = useContext(Account)
+  const { setChainId } = useContext(Account)
+  const { setAccount } = useContext(Account)
   const connector = new WalletConnect({
     bridge: 'https://bridge.walletconnect.org',
   })
@@ -43,6 +43,13 @@ export default function WalletConnectCom() {
   const handleOnClick = () => {
     QRCodeModal.open(connector.uri)
   }
+  const disconnect = () => {
+    if (connector.connected) {
+      connector.killSession()
+    } else {
+      alert('Connect before disconnecting!')
+    }
+  }
   return (
     <div>
       <header className="App-header">Wallet connect</header>
@@ -50,19 +57,10 @@ export default function WalletConnectCom() {
         <button className="connect-button" onClick={handleOnClick}>
           Connect
         </button>
-        <button className="connect-button" onClick={() => connector.killSession()}>
+        <button className="connect-button" onClick={disconnect}>
           Disconnect
         </button>
       </div>
-      {(account || chain) && (
-        <div className="results">
-          <h1>Accounts</h1>
-          <p>{account}</p>
-          <br />
-          <h1>Chain ID</h1>
-          <p>{chain}</p>
-        </div>
-      )}
     </div>
   )
 }

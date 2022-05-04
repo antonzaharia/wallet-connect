@@ -19,12 +19,6 @@ export default function Metamask() {
           Connect
         </button>
       </div>
-      {account && (
-        <div className="results">
-          <h1>Account</h1>
-          <p>{account}</p>
-        </div>
-      )}
     </div>
   )
 }

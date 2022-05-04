@@ -5,8 +5,9 @@ const Account = createContext({})
 
 const AccountProvider = ({ children }) => {
   const [account, setAccount] = useState(null)
+  const [chain, setChain] = useState(null)
 
-  return <Account.Provider value={{ account, setAccount }}>{children}</Account.Provider>
+  return <Account.Provider value={{ account, setAccount, chain, setChain }}>{children}</Account.Provider>
 }
 
 AccountProvider.propTypes = {
