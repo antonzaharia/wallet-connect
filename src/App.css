@@ -24,6 +24,9 @@
   padding: 20px;
   font-weight: 700;
 }
+h1, p {
+  color: antiquewhite;
+}
 
 .content {
   padding-top: 40px;
