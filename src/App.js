@@ -1,20 +1,11 @@
 import './App.css'
+import WalletConnectCom from './WalletConnectCom'
 
 function App() {
-  const handleOnClick = () => {
-    console.log('connect!')
-  }
   return (
     <div className="App">
-      <header className="App-header">Wallet connect</header>
-      <div className="content">
-        <button className="connect-button" onClick={handleOnClick}>
-          Connect
-        </button>
-        <div className="results"></div>
-      </div>
+      <WalletConnectCom />
     </div>
   )
 }
-
 export default App
