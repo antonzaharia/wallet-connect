@@ -32,7 +32,7 @@ h1, p {
 .recommendation {
   color: antiquewhite;
 }
-a {
+.recommend-link {
   color: antiquewhite;
   font-size: 20px;
   font-weight: 600;

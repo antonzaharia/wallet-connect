@@ -65,7 +65,7 @@ export default function WalletConnectCom() {
 
       <div className="recommendation">
         <h2>Our recommendation is to:</h2>
-        <a href="https://metamask.io/download/" target="_blank" rel="noreferrer">
+        <a href="https://metamask.io/download/" target="_blank" rel="noreferrer" className="recommend-link">
           Install Metamask
         </a>
       </div>
