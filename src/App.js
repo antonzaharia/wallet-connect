@@ -14,13 +14,14 @@ function App() {
           {/* Other wallets */}
         </div>
       )
+    } else {
+      return <WalletConnectCom />
     }
   }
   return (
     <AccountProvider>
       <div className="App">
         <Connection />
-        <WalletConnectCom />
         {renderMetamaskConnect()}
       </div>
     </AccountProvider>

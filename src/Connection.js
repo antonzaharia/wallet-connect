@@ -14,7 +14,7 @@ export default function Connection() {
 
   const buy = async () => {
     if (!web3.currentProvider) {
-      const walletConnectProvider = async () => {
+      const getProvider = async () => {
         const provider = new WalletConnectProvider({
           infuraId: '26766d6b478542fe904cf4bb3da45744',
         })
@@ -22,9 +22,10 @@ export default function Connection() {
         return provider
       }
 
-      let provider = await walletConnectProvider()
+      let provider = await getProvider()
       web3.setProvider(provider)
     }
+    console.log('address', account)
     web3.eth.sendTransaction(
       {
         from: account,

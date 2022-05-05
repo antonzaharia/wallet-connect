@@ -3,7 +3,6 @@ import WalletConnect from '@walletconnect/client'
 import QRCodeModal from '@walletconnect/qrcode-modal'
 import { useContext } from 'react'
 import { Account } from './context'
-import WalletConnectProvider from '@walletconnect/web3-provider'
 
 export default function WalletConnectCom() {
   const { setAccount } = useContext(Account)
