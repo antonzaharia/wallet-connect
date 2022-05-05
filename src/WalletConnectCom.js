@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import { Account } from './context'
 
 export default function WalletConnectCom() {
-  const { setAccount } = useContext(Account)
+  const { account, setAccount } = useContext(Account)
   const connector = new WalletConnect({
     bridge: 'https://bridge.walletconnect.org',
   })
@@ -51,12 +51,23 @@ export default function WalletConnectCom() {
     <div>
       <header className="App-header">Wallet connect</header>
       <div className="content">
-        <button className="connect-button" onClick={handleOnClick}>
-          Connect
-        </button>
-        <button className="connect-button" onClick={disconnect}>
-          Disconnect
-        </button>
+        {!account && (
+          <button className="connect-button" onClick={handleOnClick}>
+            Connect
+          </button>
+        )}
+        {account && (
+          <button className="connect-button" onClick={disconnect}>
+            Disconnect
+          </button>
+        )}
+      </div>
+
+      <div className="recommendation">
+        <h2>Our recommendation is to:</h2>
+        <a href="https://metamask.io/download/" target="_blank" rel="noreferrer">
+          Install Metamask
+        </a>
       </div>
     </div>
   )
