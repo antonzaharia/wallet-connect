@@ -35,6 +35,7 @@ export default function WalletConnectCom() {
     if (error) {
       throw error
     }
+    connector.killSession()
     setAccount(null)
   })
   const handleOnClick = () => {

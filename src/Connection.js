@@ -16,7 +16,7 @@ export default function Connection() {
     if (!web3.currentProvider) {
       const getProvider = async () => {
         const provider = new WalletConnectProvider({
-          infuraId: '26766d6b478542fe904cf4bb3da45744',
+          infuraId: '27e484dcd9e3efcfd25a83a78777cdf1',
         })
         await provider.enable()
         return provider
